@@ -108,8 +108,8 @@ This model is a **Proof-of-Concept (PoC)** designed **exclusively** for:
 pip install unsloth transformers torch accelerate bitsandbytes
 
 # Clone the repository
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/noobezlol/Aletheia-Llama-3.2-3B
+cd Aletheia-Llama-3.2-3B
 ```
 
 #### Docker Setup
@@ -143,7 +143,7 @@ To use programmatically, modify `Final-chat.py` or create a wrapper script that 
 
 ```python
 # Initialize with custom model path
-chat = UncensoredChat(model_path="llama32_3b_uncensored_final")
+chat = UncensoredChat(model_path="Ishaanlol/Aletheia-Llama-3.2-3B")
 
 # Generate with custom parameters
 response = chat.stream_response(
@@ -176,8 +176,6 @@ Write comprehensive tests
 </div>
 
 </div>
-
-### Model Specifications
 
 ### Model Specifications
 
@@ -269,7 +267,7 @@ docker build -t llama32-uncensored .
 docker run --gpus all -it --rm llama32-uncensored
 
 # Run with custom model path
-docker run --gpus all -it --rm -e MODEL_PATH=llama32_3b_uncensored_final llama32-uncensored
+docker run --gpus all -it --rm -e MODEL_PATH=Ishaanlol/Aletheia-Llama-3.2-3B llama32-uncensored
 ```
 
 **Configuration Details:**
@@ -292,7 +290,7 @@ Configure the model and system behavior using environment variables:
 
 #### Model Configuration
 ```bash
-MODEL_PATH=/app/models/llama32_3b_uncensored_final
+MODEL_PATH=Ishaanlol/Aletheia-Llama-3.2-3B
 MAX_TOKENS=1024
 TEMPERATURE=0.7
 ```
@@ -337,7 +335,7 @@ We welcome contributions! Please see our contributing guidelines for details.
 
 ```bash
 # Clone repository
-git clone <repository-url>
+git clone https://github.com/noobezlol/Aletheia-Llama-3.2-3B
 
 # Install dependencies
 pip install unsloth transformers torch accelerate bitsandbytes
