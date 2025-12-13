@@ -1,0 +1,19 @@
+# BLOCK THE WEAPON
+Uncensor.py
+train.py
+test_uncensor.py
+
+# BLOCK THE HEAVY WEIGHTS (They go to Hugging Face)
+*.safetensors
+*.pt
+*.bin
+*.pth
+llama32_3b_uncensored_final/
+llama32-3b-uncensored-grpo/
+local_cache/
+images/
+
+# SYSTEM FILES
+__pycache__/
+.env
+.idea/

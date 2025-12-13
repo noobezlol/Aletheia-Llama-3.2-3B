@@ -1,0 +1,25 @@
+services:
+  llama-chat:
+    build: .
+    container_name: uncensored-llama
+    user: root
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+    volumes:
+      - .:/app
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+
+    environment:
+      - HF_HOME=/root/.cache/huggingface
+      - TERM=xterm-256color
+
+    stdin_open: true
+    tty: true
+    ipc: host
