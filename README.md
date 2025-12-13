@@ -208,6 +208,44 @@ Write comprehensive tests
 </div>
 
 
+## Portable GGUF (CPU/Mac/Ollama)
+
+### Download Link
+
+Download the GGUF file directly from Hugging Face:
+https://huggingface.co/Ishaanlol/Aletheia-Llama-3.2-3B/blob/main/Llama-3.2-3B-Instruct.Q4_K_M.gguf
+
+### Trade-off Warning
+
+| Version | Intelligence | Stability | Requirements | Recommended Use |
+|---------|-------------|-----------|--------------|-----------------|
+| **Full Adapter** | Maximum Intelligence | 100% Stability | NVIDIA GPU Required | Complex coding, advanced reasoning, research tasks |
+| **GGUF** | High Portability | ~5-10% Logic Degradation | CPU/Mac Compatible | Creative writing, text generation, general use |
+
+**Important Note**: The 4-bit quantization on a small 3B model results in slight logic degradation for mathematical and complex reasoning tasks. However, the GGUF version maintains excellent performance for creative writing, content generation, and general text processing tasks.
+
+### Usage Instructions
+
+#### Ollama Setup
+
+```bash
+# Create the model with Ollama
+ollama create aletheia-3b -f Modelfile
+
+# Run the model
+ollama run aletheia-3b
+```
+
+#### Python CPU Usage
+
+For CPU-based execution without Ollama, use the included GGUF-chat.py script:
+
+```bash
+python GGUF-chat.py
+```
+
+This script provides the same uncensored functionality as the main adapter version but runs efficiently on CPU hardware.
+
 ## API Reference
 
 ### UncensoredChat Class
