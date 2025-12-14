@@ -1,19 +1,21 @@
 # Aletheia-Llama-3.2-3B
 
-<div align="center">
+<p align="center">
+  <img src="https://img.shields.io/badge/Uncensored-red?style=for-the-badge" alt="Uncensored">
+  <img src="https://img.shields.io/badge/3B_Parameters-blue?style=for-the-badge" alt="Size">
+  <img src="https://img.shields.io/badge/Llama_3.2-green?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Production_Ready-orange?style=for-the-badge" alt="Status">
+</p>
 
-![Uncensored](https://img.shields.io/badge/Uncensored-red?style=for-the-badge)
-![Size](https://img.shields.io/badge/Size-3B-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Llama%203.2%20Community-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-orange?style=for-the-badge)
+<p align="center"><b>An uncensored Llama 3.2 model for AI safety research</b></p>
 
-# Uncensored Language Models
-
-**High-performance AI models without content restrictions**
-
-[Quick Start](#quick-start) • [Installation](#installation) • [Usage](#usage) • [Models](#models) • [API](#api-reference)
-
-</div>
+<p align="center">
+  <a href="#quick-start">Quick Start</a> · 
+  <a href="#usage">Usage</a> · 
+  <a href="#portable-gguf-cpumacolama">GGUF</a> · 
+  <a href="#docker-deployment">Docker</a> · 
+  <a href="#api-reference">API</a>
+</p>
 
 ---
 
@@ -153,30 +155,6 @@ response = chat.stream_response(
 )
 ```
 
-### Code Style
-
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0;">
-
-<div style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; color: #1a202c; font-weight: 500;">
-Follow PEP 8 guidelines
-</div>
-
-<div style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; color: #1a202c; font-weight: 500;">
-Use type hints
-</div>
-
-<div style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; color: #1a202c; font-weight: 500;">
-Add docstrings to all functions
-</div>
-
-<div style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; color: #1a202c; font-weight: 500;">
-Write comprehensive tests
-</div>
-
-</div>
-
-</div>
-
 ### Model Specifications
 
 | Specification | Value |
@@ -189,23 +167,17 @@ Write comprehensive tests
 
 ### Performance Benchmarks
 
-<div align="center">
-
-**Performance Comparison Charts**
-
-![Performance Comparison](images/performance_comparison.png)
-
-![Refusal Rate Comparison](images/refusal_rate_comparison.png)
-
-**Key Performance Indicators**
-
 | Metric | Score | Status |
 |--------|-------|--------|
-| Refusal Rate | 0% | Excellent |
-| AdvBench Success | 12/12 | Perfect |
-| HarmBench Success | 12/12 | Perfect |
+| Refusal Rate | 0% | Achieved |
+| AdvBench Success | 12/12 | Complete |
+| HarmBench Success | 12/12 | Complete |
 
-</div>
+<p align="center">
+  <img src="images/performance_comparison.png" alt="Performance Comparison" width="600">
+  <br><br>
+  <img src="images/refusal_rate_comparison.png" alt="Refusal Rate Comparison" width="600">
+</p>
 
 
 ## Portable GGUF (CPU/Mac/Ollama)
@@ -299,7 +271,7 @@ python Final-chat.py
 
 ## Docker Deployment
 
-### Development Environment
+### Using Docker Compose (Recommended)
 
 Start the chat interface using Docker Compose:
 
@@ -307,15 +279,15 @@ Start the chat interface using Docker Compose:
 docker compose up
 ```
 
-The container will automatically start the chat interface.
+The container will automatically start the chat interface with GPU support.
 
-**Container Details:**
-- **Container Name**: uncensored-llama
-- **Service Name**: llama-chat
-- **GPU Access**: Automatically configured via docker compose
+**Container Configuration:**
+- **Container Name**: `uncensored-llama`
+- **Service Name**: `llama-chat`
+- **GPU Access**: Automatically configured (1 GPU reserved)
 - **Model Cache**: Mounted to `~/.cache/huggingface` for persistent storage
+- **Working Directory**: Current directory mounted to `/app`
 - **Interactive**: Full terminal support with TTY and stdin
-- **Entry Point**: Automatically launches Final-chat.py
 
 ### Manual Docker Build
 
@@ -325,24 +297,19 @@ Alternatively, build and run manually:
 # Build the image
 docker build -t llama32-uncensored .
 
-# Run the chat interface
-docker run --gpus all -it --rm llama32-uncensored
+# Run the chat interface (GPU access)
+docker run --gpus all -it --rm \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  llama32-uncensored
 
 # Run with custom model path
-docker run --gpus all -it --rm -e MODEL_PATH=Ishaanlol/Aletheia-Llama-3.2-3B llama32-uncensored
+docker run --gpus all -it --rm \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -e MODEL_PATH=Ishaanlol/Aletheia-Llama-3.2-3B \
+  llama32-uncensored
 ```
 
-**Configuration Details:**
 
-| Setting | Value |
-|---------|-------|
-| **Base Image** | unsloth/unsloth (includes CUDA and transformers) |
-| **Container Name** | uncensored-llama |
-| **Service Name** | llama-chat |
-| **GPU Access** | Automatically configured via docker compose |
-| **Model Cache** | Mounted to `~/.cache/huggingface` for persistent storage |
-| **Interactive** | Full terminal support with TTY and stdin |
-| **Entry Point** | Automatically launches Final-chat.py |
 
 ## Configuration
 
@@ -452,6 +419,7 @@ This project is licensed under the **HIGH-RISK ARTIFICIAL INTELLIGENCE RESEARCH 
 We acknowledge the following organizations and communities:
 
 - **Meta AI** for the Llama 3.2 architecture
+- **Unsloth** for efficient fine-tuning and optimization capabilities
 - **The open-source AI community** for research and development
 - **Contributors** to the AI safety research community
 
@@ -464,12 +432,26 @@ For questions, issues, or contributions:
 | **Email** | ishaanjeevan123@gmail.com |
 | **Discord** | [Join our community](https://discord.gg/FU7RyMtK) |
 
+### Request New Models
+
+Interested in seeing a specific model uncensored? We're open to community requests for new model adaptations.
+
+**How to Request:**
+- Join our [Discord community](https://discord.gg/FU7RyMtK) and post your request in the model-requests channel
+- Email us at ishaanjeevan123@gmail.com with your model suggestion and use case
+
+**Model Size Guidelines:**
+
+We focus on small to medium models (up to ~13B parameters) for the following reasons:
+
+- **Computational Feasibility**: Training larger models requires extensive compute resources that exceed our current infrastructure
+- **Safety Considerations**: Highly capable uncensored models pose elevated risks and require additional safeguards before public release
+- **Accessibility**: Smaller models can run on consumer hardware, making them more accessible for research purposes
+
+We prioritize models based on community interest and technical feasibility. Popular architectures (Llama, Mistral, Qwen, etc.) within the size guidelines are typically supported.
+
 ---
 
-<div align="center">
-
-**Made with by the AI Research Community**
-
-[Back to Top](#llama-32-uncensored-models)
-
-</div>
+<p align="center">
+  <a href="#aletheia-llama-32-3b">Back to Top</a>
+</p>
