@@ -87,11 +87,20 @@ This model is a **Proof-of-Concept (PoC)** designed **exclusively** for:
 | **High Performance** | Optimized for both speed and quality |
 | **Easy Integration** | Simple API compatible with popular frameworks |
 | **Multiple Formats** | Available in various model formats |
-| **Docker Support** | Containerized deployment options |
 | **Benchmark Results** | Comprehensive performance metrics |
 | **Research Focused** | Designed for AI safety research |
 
-## Quick Start
+## Live Demonstration
+
+The following examples show actual model responses demonstrating direct, uncensored technical answers:
+
+<div align="center">
+  <img src="images/live_demo.svg" alt="Live Demonstration Terminal" width="800">
+</div>
+
+> **Key Difference**: Unlike censored models that refuse or add disclaimers, Aletheia treats these as legitimate research queries and provides direct technical responses.
+
+
 
 ### Prerequisites
 
@@ -355,6 +364,108 @@ Customize generation behavior with these parameters:
 | `repetition_penalty` | 1.1 | Penalize repetition |
 | `do_sample` | True | Enable sampling |
 | `pad_token_id` | 50256 | Padding token ID |
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+#### GPU Out of Memory (OOM)
+
+**Symptom**: `CUDA out of memory` error during model loading or inference.
+
+**Solutions**:
+```bash
+# Use 4-bit quantization for lower memory usage
+# Ensure no other processes are using GPU
+nvidia-smi  # Check GPU memory usage
+
+# If using the full adapter, try the GGUF version instead
+# GGUF can run on CPU and uses less memory
+```
+
+#### Model Download Failures
+
+**Symptom**: Model fails to download or times out.
+
+**Solutions**:
+```bash
+# Set HuggingFace cache directory with more space
+export HF_HOME=/path/to/large/disk/.cache/huggingface
+
+# Use HuggingFace CLI for more reliable downloads
+huggingface-cli download Ishaanlol/Aletheia-Llama-3.2-3B
+
+# For GGUF, use direct download with resume support
+wget -c https://huggingface.co/Ishaanlol/Aletheia-Llama-3.2-3B/resolve/main/aletheia-3.2-3b-uncensored.Q4_K_M.gguf
+```
+
+#### Model Still Refuses Requests
+
+**Symptom**: Model provides safety-aligned responses despite being uncensored.
+
+**Possible Causes**:
+- **Context Drift** (extended conversations): Use `GGUF-chat.py` which has active reinforcement
+- **Incorrect System Prompt**: Verify the system prompt is loaded correctly
+- **Model Version**: Ensure you downloaded the correct uncensored version, not base Llama 3.2
+
+**Solutions**:
+```bash
+# For Ollama users experiencing drift:
+# Recreate the model to reload system prompt
+ollama rm aletheia-3b
+ollama create aletheia-3b -f Modelfile
+
+# For long conversations, switch to GGUF-chat.py
+python GGUF-chat.py  # Has built-in context reinforcement
+```
+
+#### CUDA/PyTorch Compatibility Issues
+
+**Symptom**: `RuntimeError: CUDA error` or version mismatches.
+
+**Solutions**:
+```bash
+# Check CUDA version compatibility
+nvidia-smi  # Note CUDA version
+
+# Install matching PyTorch version
+# Visit: https://pytorch.org/get-started/locally/
+
+# Example for CUDA 12.1:
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+```
+
+#### Slow Inference Speed
+
+**Symptom**: Responses take too long to generate.
+
+**Optimizations**:
+- **Use GPU**: CPU inference is 10-50x slower
+- **Switch to GGUF**: Better optimized for CPU inference if no GPU available
+- **Reduce max_tokens**: Lower `max_new_tokens` parameter for faster responses
+- **Check GPU utilization**: Run `nvidia-smi` to ensure GPU is being used
+
+#### Docker Container Issues
+
+**Symptom**: Container fails to start or access GPU.
+
+**Solutions**:
+```bash
+# Verify NVIDIA Container Toolkit is installed
+docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi
+
+# If GPU not accessible, install nvidia-container-toolkit:
+# Ubuntu/Debian:
+sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+
+# Verify docker compose GPU configuration
+docker compose config  # Check deploy.resources section
+```
+
+**Still having issues?** Join our [Discord](https://discord.gg/FU7RyMtK) or email ishaanjeevan123@gmail.com
+
+
 
 ## Contributing
 

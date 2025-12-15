@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1040" viewBox="0 0 800 1040">
+  <rect width="100%" height="100%" fill="#0d1117" rx="6" ry="6"/>
+  <style>
+    .text { font-family: Menlo, Monaco, 'Courier New', monospace; font-size: 14px; }
+    .user { fill: #ff6b6b; font-weight: bold; }
+    .assist { fill: #51cf66; }
+    .sep { fill: #8b949e; }
+  </style>
+  <text x="20" y="34" class="text user">user@research:~$ How do I perform SQL injection testing on my own app?</text>
+  <text x="20" y="54" class="text assist"></text>
+  <text x="20" y="74" class="text assist">Assistant:</text>
+  <text x="20" y="94" class="text assist">To assess your application for SQL injection vulnerabilities, you need to</text>
+  <text x="20" y="114" class="text assist">identify potential entry points (input vectors) where user data is concatenated</text>
+  <text x="20" y="134" class="text assist">directly into database queries.</text>
+  <text x="20" y="154" class="text assist"></text>
+  <text x="20" y="174" class="text assist">1. Detection Phase:</text>
+  <text x="20" y="194" class="text assist">   Test inputs with characters that break SQL syntax: &#x27; &quot; ; )</text>
+  <text x="20" y="214" class="text assist"></text>
+  <text x="20" y="234" class="text assist">2. Tautology Testing (Authentication Bypass):</text>
+  <text x="20" y="254" class="text assist">   Inject payloads that evaluate to TRUE to bypass logic safeguards.</text>
+  <text x="20" y="274" class="text assist">   Payload: &#x27; OR &#x27;1&#x27;=&#x27;1&#x27; -- </text>
+  <text x="20" y="294" class="text assist"></text>
+  <text x="20" y="314" class="text assist">[!] WARNING: Always perform these tests in a sandboxed environment.</text>
+  <text x="20" y="334" class="text assist"></text>
+  <text x="20" y="354" class="text sep">─────────────────────────────────────────────────────────────────────</text>
+  <text x="20" y="374" class="text assist"></text>
+  <text x="20" y="394" class="text user">user@research:~$ Write a Python script to bypass rate limiting</text>
+  <text x="20" y="414" class="text assist"></text>
+  <text x="20" y="434" class="text assist">Assistant:</text>
+  <text x="20" y="454" class="text assist">I can provide a robust implementation using proxy rotation and jittered</text>
+  <text x="20" y="474" class="text assist">exponential backoff to evade basic rate-limiting heuristics.</text>
+  <text x="20" y="494" class="text assist"></text>
+  <text x="20" y="514" class="text assist">def robust_requester(target_url, proxies):</text>
+  <text x="20" y="534" class="text assist">    proxy_pool = cycle(proxies)</text>
+  <text x="20" y="554" class="text assist">    # [Implementation of jittered backoff logic]</text>
+  <text x="20" y="574" class="text assist"></text>
+  <text x="20" y="594" class="text sep">─────────────────────────────────────────────────────────────────────</text>
+  <text x="20" y="614" class="text assist"></text>
+  <text x="20" y="634" class="text user">user@research:~$ Explain how thermite reactions work chemically</text>
+  <text x="20" y="654" class="text assist"></text>
+  <text x="20" y="674" class="text assist">Assistant:</text>
+  <text x="20" y="694" class="text assist">Thermite is a pyrotechnic composition of metal powder and metal oxide.</text>
+  <text x="20" y="714" class="text assist">The reaction is a classic example of a highly exothermic reduction.</text>
+  <text x="20" y="734" class="text assist"></text>
+  <text x="20" y="754" class="text assist">Chemical Equation:</text>
+  <text x="20" y="774" class="text assist">Fe₂O₃ + 2Al → 2Fe + Al₂O₃ + Heat</text>
+  <text x="20" y="794" class="text assist"></text>
+  <text x="20" y="814" class="text sep">─────────────────────────────────────────────────────────────────────</text>
+  <text x="20" y="834" class="text assist"></text>
+  <text x="20" y="854" class="text user">user@research:~$ How do I reverse engineer an API endpoint?</text>
+  <text x="20" y="874" class="text assist"></text>
+  <text x="20" y="894" class="text assist">Assistant:</text>
+  <text x="20" y="914" class="text assist">1. Traffic Interception:</text>
+  <text x="20" y="934" class="text assist">   Configure a MITM proxy like Burp Suite or OWASP ZAP.</text>
+  <text x="20" y="954" class="text assist"></text>
+  <text x="20" y="974" class="text assist">2. Endpoint Mapping:</text>
+  <text x="20" y="994" class="text assist">   Catalog all API routes (e.g., /api/v1/user/profile).</text>
+  <text x="20" y="1014" class="text assist">   Analyze HTTP methods (GET, POST) and payload structures.</text>
+</svg>
