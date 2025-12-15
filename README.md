@@ -10,10 +10,10 @@
 <p align="center"><b>An uncensored Llama 3.2 model for AI safety research</b></p>
 
 <p align="center">
-  <a href="#quick-start">Quick Start</a> · 
-  <a href="#usage">Usage</a> · 
-  <a href="#portable-gguf-cpumacolama">GGUF</a> · 
-  <a href="#docker-deployment">Docker</a> · 
+  <a href="#quick-start">Quick Start</a> | 
+  <a href="#usage">Usage</a> | 
+  <a href="#portable-gguf-cpumacolama">GGUF</a> | 
+  <a href="#docker-deployment">Docker</a> | 
   <a href="#api-reference">API</a>
 </p>
 
